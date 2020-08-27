@@ -11,7 +11,6 @@ router.post('/user', async (req, res) => {
         await user.save();
         res.status(RESPONSE_CODE_SUCCESS_CREATED).send(user);
     } catch (error) {
-        console.log('user error',error)
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
     }
 });
@@ -74,7 +73,7 @@ router.delete('/user/:id', async (req, res) => {
 
 router.post('/user/login', async (req, res) => {
     try {
-        const _user = User.validateUser(req.body.email, req.body.password);
+        const _user = await User.validateUser(req.body.email, req.body.password);
         res.send(_user);
     } catch (error) {
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
