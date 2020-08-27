@@ -11,6 +11,7 @@ router.post('/user', async (req, res) => {
         await user.save();
         res.status(RESPONSE_CODE_SUCCESS_CREATED).send(user);
     } catch (error) {
+        console.log('user error',error)
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
     }
 });

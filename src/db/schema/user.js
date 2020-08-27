@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const emailValidator = require("email-validator");
+const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -29,25 +30,12 @@ const userSchema = new Schema({
     }
 });
 
-// userSchema.statics.validateUser = async (email, password) => {
-//     const _user = User.findOne({ email });
-//     if (!_user) {
-//         throw new Error('User validation failed');
-//     }
-//     const passwordMatch = bcrypt.compare(password, _user.password);
-//     if(passwordMatch){
-//         return _user;
-//     }else{
-//         throw new Error('User validation failed');
-//     }
-// }
-// userSchema.pre('save', async function (next) {
-//     console.log('inside bcrypt this',this)
-//     const user = this;
-//     if (user.isModified('password')) {
-//         user.password = await bcrypt.hash(user.password, 8);
-//     }
-//     // console.log('inside bcrypt',user)
-//     next();
-// });
+userSchema.pre('save', async function (next) {
+    const user = this;
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+    console.log('inside bcrypt', user)
+    next();
+});
 module.exports = userSchema;

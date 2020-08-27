@@ -1,5 +1,5 @@
 const commonConstants = {}
-commonConstants.databaseName = 'db-quotations';
+commonConstants.databaseName = 'project';
 commonConstants.authorsCollectionName = 'authors';
 commonConstants.publicationsCollectionName = 'publications';
 commonConstants.usersCollectionName = 'users';
