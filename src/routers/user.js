@@ -41,7 +41,12 @@ router.get('/user/:id', async (req, res) => {
 router.patch('/user/:id', async (req, res) => {
     const _id = req.params.id;
     try {
-        const user = await User.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
+        const user = await User.findById(_id);
+        Object.keys(req.body).forEach(key => {
+            user[key] = req.body[key];
+        });
+        await user.save();
+        // await User.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
         if (user) {
             res.status(RESPONSE_CODE_SUCCESS).send(user);
         } else {
@@ -64,5 +69,16 @@ router.delete('/user/:id', async (req, res) => {
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
     }
 });
+
+
+router.post('/user/login', async (req, res) => {
+    try {
+        const _user = User.validateUser(req.body.email, req.body.password);
+        res.send(_user);
+    } catch (error) {
+        res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
+    }
+})
+
 
 module.exports = router;

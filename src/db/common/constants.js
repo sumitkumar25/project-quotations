@@ -1,7 +1,8 @@
 const commonConstants = {}
-commonConstants.databaseName = '';
-commonConstants.authorsCollectionName = 'Authors';
-commonConstants.publicationsCollectionName = 'Publications';
+commonConstants.databaseName = 'db-quotations';
+commonConstants.authorsCollectionName = 'authors';
+commonConstants.publicationsCollectionName = 'publications';
+commonConstants.usersCollectionName = 'users';
 commonConstants.mongoUrl = 'mongodb://127.0.0.1:27017';
 
 commonConstants.RESPONSE_CODE_ERROR = 400;
