@@ -1,4 +1,5 @@
 const express = require('express');
+const { RESPONSE_CODE_SERVICE_UNAVAILABLE } = require('./src/common/constants');
 // start db
 require('./src/db/mongoose');
 //initalise mongoose schemas
@@ -12,7 +13,9 @@ const quotationRouter = require('./src/routers/quotation');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
-
+// app.use((req, res, next) => {
+//     res.status(RESPONSE_CODE_SERVICE_UNAVAILABLE).send('Site down for maintenance')
+// });
 app.use(express.json());
 app.use(userRouter);
 app.use(authorRouter);
@@ -21,5 +24,5 @@ app.use(quotationRouter);
 
 
 app.listen(PORT, () => {
-    console.log( `express server running at :- ${PORT}`);
+    console.log(`express server running at :- ${PORT}`);
 });

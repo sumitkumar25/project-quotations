@@ -27,14 +27,26 @@ const userSchema = new Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 });
 
 userSchema.pre('save', async function (next) {
-    const user = this;
-    if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, 8);
+    try {
+        const user = this;
+        if (user.isModified('password')) {
+            user.password = await bcrypt.hash(user.password, 8);
+        }
+        next();
+    } catch (error) {
+        throw error;
     }
-    next();
 });
 module.exports = userSchema;

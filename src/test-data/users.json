@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "5f5e1ceaccc0eda0930ac69d"
+  },
+  "username": "test",
+  "email": "test@test.com",
+  "password": "$2a$08$JvWS/bmapnw6465x1Oda0OjN4R.c.WgDaCRaks/VXGCio1QMNNZ6.",
+  "tokens": [
+    {
+      "_id": {
+        "$oid": "5f5e1ceaccc0eda0930ac69e"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjVlMWNlYWNjYzBlZGEwOTMwYWM2OWQiLCJpYXQiOjE2MDAwMDMzMDZ9.uBgjinTf_ctlLy0-GmQFNGSWenu9WqW80liJZooGvaY"
+    },
+    {
+      "_id": {
+        "$oid": "5f5e2246ccc0eda0930ac69f"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjVlMWNlYWNjYzBlZGEwOTMwYWM2OWQiLCJpYXQiOjE2MDAwMDQ2Nzh9.1UNYxJ6R6s16K8qtJwFS7VmdSY_-VcGeQxkFYIPn5qU"
+    }
+  ],
+  "__v": 1
+}]

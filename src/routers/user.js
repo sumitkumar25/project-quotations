@@ -1,27 +1,24 @@
-const { RESPONSE_CODE_ERROR, RESPONSE_CODE_SUCCESS_CREATED, RESPONSE_CODE_CATCH_ERROR, RESPONSE_CODE_SUCCESS } = require('./../../src/db/common/constants');
+const { RESPONSE_CODE_ERROR, RESPONSE_CODE_SUCCESS_CREATED, RESPONSE_CODE_CATCH_ERROR, RESPONSE_CODE_SUCCESS } = require('../common/constants');
 
 
 const express = require('express');
 const router = new express.Router();
 const User = require('./../../src/db/models/user');
+const auth = require('./../middleware/auth');
+const commonConstants = require('../common/constants');
 
 router.post('/user', async (req, res) => {
-    const user = new User(req.body);
     try {
-        await user.save();
-        res.status(RESPONSE_CODE_SUCCESS_CREATED).send(user);
+        const user = new User(req.body);
+        const token = await user.generateAuthToken();
+        res.status(RESPONSE_CODE_SUCCESS_CREATED).send({ user, token });
     } catch (error) {
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
     }
 });
 
-router.get('/users', async (req, res) => {
-    try {
-        const users = await User.find({})
-        res.status(RESPONSE_CODE_SUCCESS).send(users)
-    } catch (error) {
-        res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
-    }
+router.get('/user/profile', auth, async (req, res) => {
+    res.send(req[commonConstants.AUTHENTICATED_USER]);
 });
 
 router.get('/user/:id', async (req, res) => {
@@ -73,8 +70,29 @@ router.delete('/user/:id', async (req, res) => {
 
 router.post('/user/login', async (req, res) => {
     try {
-        const _user = await User.validateUser(req.body.email, req.body.password);
-        res.send(_user);
+        const user = await User.validateUser(req.body.email, req.body.password);
+        const token = await user.generateAuthToken();
+        res.send({ user, token });
+    } catch (error) {
+        res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
+    }
+});
+
+router.post('/user/logout', auth, async (req, res) => {
+    try {
+        req[commonConstants.AUTHENTICATED_USER].tokens = req[commonConstants.AUTHENTICATED_USER].tokens.filter(t => t.token !== req[commonConstants.AUTHENTICATION_TOKEN_KEY])
+        await req[commonConstants.AUTHENTICATED_USER].save()
+        res.status(RESPONSE_CODE_SUCCESS).send(req[commonConstants.AUTHENTICATED_USER])
+    } catch (error) {
+        res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
+    }
+})
+
+router.post('/user/logoutAll', auth, async (req, res) => {
+    try {
+        req.user.tokens = [];
+        await req.user.save()
+        res.send();
     } catch (error) {
         res.status(RESPONSE_CODE_CATCH_ERROR).send(error);
     }

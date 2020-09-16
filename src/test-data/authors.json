@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "5f5f623bfa219a3dc88917b0"
+  },
+  "alias": [],
+  "name": "Carl Sagan",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f5f6247fa219a3dc88917b1"
+  },
+  "alias": [],
+  "name": "Charles Bukowski",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f60d88d70c23822ac4fff07"
+  },
+  "name": "GW Bush Sr",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60d8a270c23822ac4fff15"
+  },
+  "name": "Captain Andrew 'Ack Ack' Haldane",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60d8a270c23822ac4fff16"
+  },
+  "name": "Barack Obama",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60d8a270c23822ac4fff17"
+  },
+  "name": "Edward Snowden",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60d8a270c23822ac4fff18"
+  },
+  "name": "Robert Downey Jr.",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60d8a270c23822ac4fff19"
+  },
+  "name": "JB Peterson",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60dbc370c23822ac4fff1a"
+  },
+  "name": "Joey Diaz",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60dd2570c23822ac4fff1b"
+  },
+  "name": "Mark Twain",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60dd2570c23822ac4fff1c"
+  },
+  "name": "Joe Rogan",
+  "alias": []
+},{
+  "_id": {
+    "$oid": "5f60dd2570c23822ac4fff1d"
+  },
+  "name": "Mike Hussey",
+  "alias": []
+}]
